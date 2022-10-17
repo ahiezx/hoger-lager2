@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ahmad - Hoger Lager 2 &copy;</title>
+</head>
+<body>
+    <div class="container">
+        <!-- <h1>Hoger Lager 2</h1> -->
+        <div id="game">
+            <h2 class="title">Hoger Lager</h2>
+            <a href="https://github.com/blazewtt/hoger-lager2" target="_blank">https://github.com/blazewtt/hoger-lager2</a>
+            <hr>
+            <p id="message">
+                Klik hoger of lager om te gokken!
+            </p>
+            <div class="numbers">
+                <div class="number">
+                    <p id="computerNumber">0</p>
+                </div>
+                <div class="number">
+                    <p id="playerNumber">0</p>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="lower">Lager</button>
+                <button id="higher">Hoger</button>
+            </div>
+        </div>
+    </div>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(121, 79, 159);
+        }
+        #game {
+            width: 500px;
+            height: 500px;
+            background-color: #f2f2f2;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        #game .title {
+            text-align: center;
+            margin: 0;
+            padding-top: 20px;
+            padding-bottom: 10px;
+            font-size: 2rem;
+            font-weight: 500;
+        }
+        #game a {
+            /* text-decoration: none; */
+            color: #222;
+            font-size: 1.0rem;
+            font-weight: 500;
+            display: block;
+            text-align: center;
+            /* margin-top: 20px; */
+        }
+        .controls {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .controls button {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: none;
+            background-color: #222;
+            color: #fff;
+            font-size: 1.0rem;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        #game .number {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100px;
+            background-color: #222;
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 500;
+            border:1px solid #333;
+        }
+        #game .numbers {
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            /* margin-top: 50px; */
+        }
+        #game #playerNumber {
+            
+            vertical-align: middle;
+        }
+        #game #playerNumber::before {
+            
+            content: "Speler - ";
+            font-size: 1.6rem;
+            font-weight: 500;
+            vertical-align: middle;
+        }
+
+        #game #computerNumber {
+            
+            vertical-align: middle;
+        }
+        #game #computerNumber::before {
+            
+            content: "Computer - ";
+            font-size: 1.6rem;
+            font-weight: 500;
+            vertical-align: middle;
+        }
+        #game hr {
+            margin: 0;
+            margin-top: 20px;
+            /* margin-bottom: 20px; */
+        }
+        #game #message {
+            text-align: center;
+            /* font-size: 1.6rem; */
+            background-color: rgb(95, 0, 185);
+            padding: 10px;
+            color:white;
+            font-weight: 500;
+            margin-bottom: 0px;
+        }
+    </style>
+    <script src="js/main.js"></script>
+</body>
+</html>
