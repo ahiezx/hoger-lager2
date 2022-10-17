@@ -38,7 +38,7 @@ function addLoss() {
   losses++;
   lossDisplay.textContent = losses;
   document.querySelector(".container").style.backgroundColor = "red";
-  setScore(score - 3);
+  setScore(score - (3 * difficulty));
 }
 
 function setScore(val) {
@@ -68,9 +68,11 @@ function guessHigher() {
     addWin();
   }
   else {
-    setMessage("You lose! Your score has decreased -3 points");
+    setMessage(`You lose! Your score has decreased ${(3 * difficulty)} points`);
     addLoss();
   }
+
+  checkDifficulty();
 
   
 }
@@ -95,6 +97,8 @@ function guessLower () {
     setMessage("You lose! Your score has decreased -3 points");
     addLoss();
   }
+
+  checkDifficulty();
   
 
 }
@@ -104,6 +108,21 @@ function startGame() {
   setComputerNumber(computerGuess);
   setPlayerNumber("?");
   setMessage("Guess Higher or Lower");
+}
+
+function checkDifficulty() {
+  if(score > 100) {
+    difficulty = 2;
+    setMessage("Difficulty increased to 2");
+  }
+  else if(score > 200) {
+    difficulty = 3;
+    setMessage("Difficulty increased to 3");
+  }
+  else if(score > 300) {
+    difficulty = 4;
+    setMessage("Difficulty increased to 4");
+  }
 }
 
 startGame();
