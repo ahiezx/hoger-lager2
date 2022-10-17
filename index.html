@@ -12,11 +12,16 @@
         <!-- <h1>Hoger Lager 2</h1> -->
         <div id="game">
             <h2 class="title">Hoger Lager</h2>
-            <a href="https://github.com/blazewtt/hoger-lager2" target="_blank">https://github.com/blazewtt/hoger-lager2</a>
+            <a href="https://github.com/blazewtt/hoger-lager2" target="_blank">Source Code</a>
             <hr>
             <p id="message">
                 Klik hoger of lager om te gokken!
             </p>
+            <div class="wonLost">
+                <p class="wins">Won: <span id="wins">0</span></p>
+                <p class="score">Score: <span id="score">0</span></p>
+                <p class="losses">Lost: <span id="losses">0</span></p>
+            </div>
             <div class="numbers">
                 <div class="number">
                     <p id="computerNumber">0</p>
@@ -70,11 +75,11 @@
             margin-top: 20px;
         }
         .controls button {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
+            width: 140px;
+            height: 40px;
+            border-radius: 4px;
             border: none;
-            background-color: #222;
+            background-color: #444;
             color: #fff;
             font-size: 1.0rem;
             cursor: pointer;
@@ -132,6 +137,33 @@
             color:white;
             font-weight: 500;
             margin-bottom: 0px;
+        }
+        #game .wonLost {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding:15px;
+        }
+        #game .wins {
+            background-color: green;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            border-radius: 3px;
+            color: white;
+        }
+        #game .losses {
+            background-color: red;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            border-radius: 3px;
+            color: white;
+        }
+        #game .score {
+            background-color: rgb(95, 0, 185);
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            border-radius: 3px;
+            color: white;
         }
     </style>
     <script src="js/main.js"></script>
