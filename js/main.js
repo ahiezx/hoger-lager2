@@ -1,109 +1,114 @@
 console.log("main.js loaded successfully");
 
-const computerNumber = document.querySelector("#computerNumber");
-const playerNumber = document.querySelector("#playerNumber");
+// Variables
 
-const winDisplay = document.querySelector("#wins");
-const lossDisplay = document.querySelector("#losses");
-const scoreDisplay = document.querySelector("#score");
+const computerNumber = document.querySelector("#computerNumber"); // Get computer number display (DOM)
+const playerNumber = document.querySelector("#playerNumber"); // Get player number display (DOM)
 
-const message = document.querySelector("#message");
+const winDisplay = document.querySelector("#wins"); // Get win rate display (DOM)
+const lossDisplay = document.querySelector("#losses"); // Get lose rate display (DOM)
+const scoreDisplay = document.querySelector("#score"); // Get score display (DOM)
 
-let wins = 0;
-let losses = 0;
-let score = 10;
-let difficulty = 1;
+const message = document.querySelector("#message"); // Get message display (DOM)
 
-let playerGuess, computerGuess;
+let wins = 0; // Default wins = 0
+let losses = 0; // Default losses = 0
+let score = 10; // Start with 10 points (so the player can have chance to win)
+let difficulty = 1; // Starting difficulty
 
-function setComputerNumber(val) {
+let playerGuess, computerGuess; // Define guesses for later
+
+function setComputerNumber(val) { // Function to set the computer display in the DOM
   computerNumber.textContent = val;
 }
-function setPlayerNumber(val) {
+function setPlayerNumber(val) { // Function to set the player display in the DOM
   playerNumber.textContent = val;
 }
 
-function setMessage(msg) {
+function setMessage(msg) { // Function to set message display in the DOM
   message.textContent = msg;
 }
 
-function addWin() {
-  wins++;
-  winDisplay.textContent = wins;
-  document.querySelector(".container").style.backgroundColor = "green";
-  setScore(score + 5);
+function addWin() { // Function to increase win rate
+  wins++; // Increase wins by 1
+  winDisplay.textContent = wins; // Change wins DOM to the new value
+  document.querySelector(".container").style.backgroundColor = "green"; // Change background color to green (Win)
+  setScore(score + 5); // Increase score by 5
 }
 
-function addLoss() {
-  losses++;
-  lossDisplay.textContent = losses;
-  document.querySelector(".container").style.backgroundColor = "red";
-  setScore(score - (3 * difficulty));
+function addLoss() { // Function to increase loss rate
+  losses++; // Increase losses by 1
+  lossDisplay.textContent = losses; // Change losses DOM to the new value
+  document.querySelector(".container").style.backgroundColor = "red"; // Change background color to red (Lost)
+  setScore(score - (3 * difficulty)); // Decrease score by 3 multiplied by difficulty (The higher the difficulty the more you lose)
 }
 
-function setScore(val) {
+function setScore(val) { // Function to set the score in the DOM
   score = val;
   scoreDisplay.textContent = score;
 }
 
 
-function getRandomNumber() {
+function getRandomNumber() { // Function to generate random number
   return Math.floor(Math.random() * 100) + 1;
 }
 
-function guessHigher() {
+function guessHigher() { // Guess higher function
 
-  if(score < 1) {
-    setMessage("You don't have enough points to guess higher");
-    return;
+  if(score < 1) { // Check if score is less than 1
+    // Player can't play because the score is less than 1
+    setMessage("You don't have enough points to guess higher"); // Show message
+    return; // Ignore the next commands and leave the function
   }
 
-  computerGuess = getRandomNumber();
-  playerGuess = getRandomNumber();
-  setComputerNumber(computerGuess)
-  setPlayerNumber(playerGuess)
+  computerGuess = getRandomNumber(); // Generate computer guess
+  playerGuess = getRandomNumber(); // Generate player guess
+  setComputerNumber(computerGuess) // Change computer DOM
+  setPlayerNumber(playerGuess) // Change player DOM
 
-  if (playerGuess > computerGuess) {
-    setMessage("You win! Your score has increased 5+ points");
+  if (playerGuess > computerGuess) { // If player guess is higher than computer guess
+    setMessage("You win! Your score has increased 5+ points"); // Change message in DOM
     addWin();
   }
-  else {
-    setMessage(`You lose! Your score has decreased ${(3 * difficulty)} points`);
+  else { // If computer guess is higher than player guess
+    setMessage(`You lose! Your score has decreased ${(3 * difficulty)} points`); // Change message in DOM
     addLoss();
   }
 
-  checkDifficulty();
+  checkDifficulty(); // Check difficulty and increase it if player passed score 100,200 or 300
 
   
 }
 
-function guessLower () {
+function guessLower () { // Guess lower function
 
-  if(score < 1) {
-    setMessage("You don't have enough points to guess lower");
-    return;
+  if(score < 1) { // Check if score is less than 1
+    // Player can't play because the score is less than 1
+    setMessage("You don't have enough points to guess lower"); // Set message
+    return; // Ignore other commands and return
   }
 
-  computerGuess = getRandomNumber();
-  playerGuess = getRandomNumber();
-  setComputerNumber(computerGuess)
-  setPlayerNumber(playerGuess)
+  computerGuess = getRandomNumber(); // Generate random number for computer
+  playerGuess = getRandomNumber(); // Generate random number for player
+  setComputerNumber(computerGuess) // Display computer number
+  setPlayerNumber(playerGuess) // Display player number
 
-  if (playerGuess < computerGuess) {
-    setMessage("You win! Your score has increased 5+ points");
-    addWin();
+  if (playerGuess < computerGuess) { // if player guess is less than computer gues
+    setMessage("You win! Your score has increased 5+ points"); // Set message
+    addWin(); // add win
   }
-  else {
-    setMessage("You lose! Your score has decreased -3 points");
-    addLoss();
+  else { // if computer guess is higher than player guess
+    setMessage("You lose! Your score has decreased -3 points"); // Set message
+    addLoss(); // Add lose point
   }
 
-  checkDifficulty();
+  checkDifficulty(); // Check difficulty
   
 
 }
 
 function startGame() {
+  // Initialize game
   computerGuess = getRandomNumber();
   setComputerNumber(computerGuess);
   setPlayerNumber("?");
@@ -111,6 +116,7 @@ function startGame() {
 }
 
 function checkDifficulty() {
+  // Check difficulty
   if(score > 100) {
     difficulty = 2;
     setMessage("Difficulty increased to 2");
@@ -125,7 +131,9 @@ function checkDifficulty() {
   }
 }
 
-startGame();
+startGame(); // Start game
 
+
+// Event listeners
 document.querySelector("#higher").addEventListener("click", guessHigher);
 document.querySelector("#lower").addEventListener("click", guessLower);
